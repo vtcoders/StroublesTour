@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html style='width:100%; height:100%; border:0; margin:0; padding:0;'>
+  <head>
+    <meta http-equiv='X-UA-Compatible' content='chrome=1'/>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'/>
+    <meta http-equiv='Content-Type' content='text/html;charset=utf-8'/>
+    <link rel='stylesheet' type='text/css' href='../x3dom/x3dom.css'/>
+    <script type='text/javascript' src='../x3dom/x3dom.js'></script>
+    <style>.x3dom-logContainer { bottom: 0px; position: absolute; }
+    </style>
+	
+	<script>
+	  var runtime = null, scene = null;
+
+     initialize = function() {
+            runtime = document.getElementById("x3d").runtime;
+            scene = document.getElementById( "scene" );
+           
+        };
+		
+function shapeSwitch(id){
+     var sw = document.getElementById("sphereSwitch");
+ var idi = 0;
+ idi = id;
+        sw.setAttribute('whichChoice', idi);
+
+ };
+	
+	</script>
+	
+	<script>
+/* Set the width of the sidebar to 400px (show it) */
+function openNav() {
+  document.getElementById("mySidepanel").style.width = "800px";
+}
+
+/* Set the width of the sidebar to 0 (hide it) */
+function closeNav() {
+  document.getElementById("mySidepanel").style.width = "0";
+}
+
+function openTab() {
+  document.getElementById("myDatapanel").style.width = "750px";
+}
+
+/* Set the width of the sidebar to 0 (hide it) */
+function closeTab() {
+  document.getElementById("myDatapanel").style.width = "0";
+}
+</script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>/* The sidepanel menu */
+.sidepanel {
+  height: 620px; /* Specify a height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 250;
+  right: 0;
+  background-color:rgba(199,202,204,.7); /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 10px; /* Place content 10px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidepanel */
+}
+
+/* The sidepanel links */
+.sidepanel a {
+  padding: 8px 8px 8px 40px;
+  text-decoration: none;
+  font-size: 14px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidepanel a:hover {
+  color: #f1f1f1;
+}
+
+/* Position and style the close button (top L corner) */
+.sidepanel .closebtn {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  font-size: 32px;
+  color: black;
+  margin-right: 10px;
+}
+
+/* Style the button that is used to open the sidepanel */
+.openbtn {
+  font-size: 14px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+
+
+.Datapanel {
+  height: 550px; /* Specify a height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 242;
+  left: 40;
+  background-color:rgba(224,224,224,.9); /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 10px; /* Place content 10px from the top */
+  padding-left: 4px;
+  transition: 1s; /* 0.5 second transition effect to slide in the sidepanel */
+}
+
+/* Position and style the close button (top L corner) */
+.Datapanel .closebtn {
+  position: absolute;
+  top: 0px;
+  left: 18px;
+  font-size: 32px;
+  color: black;
+  margin-left: 10px;
+}
+
+body {
+  font-family: Helvetica, Arial, Sans-Serif; 
+  /*background-color: #63A537;  -to get rid of white under the photo*/
+}
+
+.xl65 {
+  font-weight: 600 }
+  
+table, th, td {
+  border: 1px solid black;
+}
+
+.footerImg {
+z-index: 1;
+bottom: 2px;
+left: 0px;
+position:fixed;/*image stays on screen at all times*/
+width: 100%;/* so that the footer logo resizes itself with screen size changes*/
+height:auto;
+
+}
+#table-wrapper {
+  position:relative;
+}
+#table-scroll {
+  height:375px;
+  overflow:auto;  
+  margin-top:10px;
+}
+#table-wrapper table {
+  width:100%;
+    
+}
+</style>
+	
+  </head>
+  <body style='width:100%; height:100%; border:0; margin:0; padding:0;'>
+ <div > 
+   <div id='X3DOM_AOPT_Links' class='group' style='margin:26px 2px 2px; padding:4px; background-color:rgba(250,250,250,1); position:absolute; z-index:1000;'> 
+    <h3>Fishburn: Plot 1</h3>
+<em>
+    <a href="Virginia_Tech_Fishburn_Enviornmental_and_Soil_Report.pdf" target="_blank">Fishburn Environment Report</a><br>
+    <a href="https://youtu.be/fg1B_uKwe2Y" target='_blank'>Launch Drone Video</a>
+    <p>
+</em>
+
+<button class="openTab" onclick="openTab()">&#9776; Open Plot Data</button>
+<div id="myDatapanel" class="Datapanel">
+  <div id="table-scroll">
+ <a href="javascript:void(0)" class="closebtn" onclick="closeTab()">&times;</a><br>
+
+ <!--SWITCH3--> <!--TABLE GOES HERE-->
+ <table border="1" class="dataframe">
+    <thead>
+      <tr style="text-align: center;font-weight: bold">
+        <td>Tree Number</td>
+        <td>Species</td>
+        <td>Diameter Breast Height</td>
+        <td>Status</td>
+        <td>Logs (16ft)</td>
+        <td>Bolts (4ft)</td>
+        <td>Crown ClaSuppressedSuppressed</td>
+        <td>Crown Ratio%</td>
+        <td>TAG</td>
+      </tr>
+    </thead>
+    <tbody style="text-align: center;">
+      <tr>
+        <td>1</td>
+        <td>Chestnut Oak</td>
+        <td>16</td>
+        <td>Acceptable Growing Stock</td>
+        <td>3</td>
+        <td>-</td>
+        <td>Codominant</td>
+        <td>35</td>
+        <td>Missing Tag</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Chestnut Oak</td>
+        <td>18</td>
+        <td>Acceptable Growing Stock</td>
+        <td>15</td>
+        <td>-</td>
+        <td>Codominant</td>
+        <td>40</td>
+        <td>Missing Tag</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Eastern White Pine</td>
+        <td>6</td>
+        <td>Acceptable Growing Stock</td>
+        <td>-</td>
+        <td>2</td>
+        <td>Suppressed</td>
+        <td>50</td>
+        <td>836</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Sugar Maple</td>
+        <td>7.2</td>
+        <td>Unacceptable Growing Stock</td>
+        <td>-</td>
+        <td>4</td>
+        <td>Intermediate</td>
+        <td>50</td>
+        <td>660</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>Sugar Maple</td>
+        <td>6</td>
+        <td>Acceptable Growing Stock</td>
+        <td>-</td>
+        <td>2</td>
+        <td>Suppressed</td>
+        <td>40</td>
+        <td>659</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>White Oak</td>
+        <td>11.5</td>
+        <td>Acceptable Growing Stock</td>
+        <td>-</td>
+        <td>8</td>
+        <td>Codominant</td>
+        <td>30</td>
+        <td>657</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>Southern Red Oak</td>
+        <td>17.7</td>
+        <td>Acceptable Growing Stock</td>
+        <td>2.5</td>
+        <td>-</td>
+        <td>Codominant</td>
+        <td>35</td>
+        <td>Missing Tag</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>Eastern White Pine</td>
+        <td>6.1</td>
+        <td>Acceptable Growing Stock</td>
+        <td>-</td>
+        <td>3</td>
+        <td>Suppressed</td>
+        <td>50</td>
+        <td>831</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td>Eastern White Pine</td>
+        <td>10.2</td>
+        <td>Acceptable Growing Stock</td>
+        <td>2</td>
+        <td>-</td>
+        <td>Intermediate</td>
+        <td>55</td>
+        <td>647</td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td>Red Maple</td>
+        <td>6.7</td>
+        <td>Unacceptable Growing Stock</td>
+        <td>-</td>
+        <td>-</td>
+        <td>Intermediate</td>
+        <td>35</td>
+        <td>742</td>
+      </tr>
+      <tr>
+        <td>11</td>
+        <td>White Oak</td>
+        <td>18</td>
+        <td>Acceptable Growing Stock</td>
+        <td>2</td>
+        <td>-</td>
+        <td>Codomiant</td>
+        <td>25</td>
+        <td>649</td>
+      </tr>
+      <tr>
+        <td>12</td>
+        <td>Chestnut Oak</td>
+        <td>9.2</td>
+        <td>Acceptable Growing Stock</td>
+        <td>-</td>
+        <td>7</td>
+        <td>Codominant</td>
+        <td>20</td>
+        <td>650</td>
+      </tr>
+      <tr>
+        <td>13</td>
+        <td>White Oak</td>
+        <td>13.4</td>
+        <td>Acceptable Growing Stock</td>
+        <td>-</td>
+        <td>8</td>
+        <td>Codominant</td>
+        <td>30</td>
+        <td>651</td>
+      </tr>
+      <tr>
+        <td>14</td>
+        <td>White Oak</td>
+        <td>19.2</td>
+        <td>Acceptable Growing Stock</td>
+        <td>2.5</td>
+        <td>-</td>
+        <td>Codominant</td>
+        <td>50</td>
+        <td>652</td>
+      </tr>
+      <tr>
+        <td>15</td>
+        <td>White Oak</td>
+        <td>13.1</td>
+        <td>Acceptable Growing Stock</td>
+        <td>2.5</td>
+        <td>-</td>
+        <td>Codominant</td>
+        <td>40</td>
+        <td>654</td>
+      </tr>
+      <tr>
+        <td>16</td>
+        <td>Eastern White Pine</td>
+        <td>10</td>
+        <td>Acceptable Growing Stock</td>
+        <td>1</td>
+        <td>-</td>
+        <td>Codominant</td>
+        <td>60</td>
+        <td>653</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  </div> 
+
+
+  
+	  
+ </div>  
+      <div id='Plot_Data' style='margin:2px; padding:4px 4px 4px 4px; background-color:rgba(199,202,204,.7); position:absolute; z-index:1000; right:0px; top:0px;'> 
+
+	  <button class="openbtn" onclick="openNav()">&#9776; Open Site Map</button>
+
+		<div id="mySidepanel" class="sidepanel">
+	  <!-- MAP IMAGE -->
+	  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+	  <map name="workmap">
+  <area shape="circle" coords="86,373,24" alt="Plot 1" href="./Plot1.html"/>
+  <area shape="circle" coords="130,507,24" alt="Plot 2" href="./Plot2.html"/>
+ <area shape="circle" coords="188,336,24" alt="Plot 3" href="./Plot3.html"/>
+ <area shape="circle" coords="254,464,24" alt="Plot 4" href="./Plot4.html"/>
+  <area shape="circle" coords="279,277,24" alt="Plot 5" href="./Plot5.html"/>
+  <area shape="circle" coords="366,396,24" alt="Plot 6" href="./Plot6.html"/>
+  <area shape="circle" coords="442,183,24" alt="Plot 7" href="./Plot7.html"/>
+  <area shape="circle" coords="505,288,24" alt="Plot 8" href="./Plot8.html"/>
+  <area shape="circle" coords="584,90,24" alt="Plot 9" href="./Plot9.html"/>
+  <area shape="circle" coords="671,182,24" alt="Plot 10" href="./Plot10.html"/>
+
+  </map><br>
+	
+	  <img src='Fishburn_Exercise_Plot_Stand_Map.jpg' width='770' usemap="#workmap" >
+
+
+		</div>
+      </div> 
+   
+	
+    <x3d id='x3dElement' showStat='false' showLog='false' style='width:100%; height:100%; border:0; margin:0; padding:0;'>
+      <scene>
+	  <environment id="gamma" gammaCorrectionDefault="linear"></environment>  
+	  <navigationInfo DEF='NavigationInfo1'
+ avatarSize='
+  .25 1.6 .75'
+ visibilityLimit='100'
+ speed='0.2'
+ headlight='false'
+ type='"TURNTABLE"
+ "ANY"'></navigationInfo>
+ 
+ <viewpoint centerOfRotation='0,0,0' description='"Plot Center"' fieldOfView='0.785398' orientation='0,0,1,0' position='0,0,10'></viewpoint>
+ 
+        <worldInfo info='"Forestry Training with Professor Munsell" "www.vt.edu" "Nicholas Polys" "Photosphere"' title='Extension Forester Training'></worldInfo>
+
+		<switch id='sphereSwitch' whichChoice="0">
+		<inline url='Plot1_CenterF.x3d'></inline>
+	
+
+		
+		</switch>
+		
+      </scene>
+    </x3d>
+  </body>
+</html>
