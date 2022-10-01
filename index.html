@@ -1,617 +1,321 @@
 <!DOCTYPE html>
-<html style="width: 100%; height: 100%; border: 0; margin: 0; padding: 0">
-	<!-- remove the upper div if things don't work-->
-	<head>
-		<meta http-equiv="X-UA-Compatible" content="chrome=1" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-		<link rel="stylesheet" type="text/css" href="./x3dom/x3dom.css" />
-		<link rel="stylesheet" type="text/css" href="/styles.css" />
-		<script type="text/javascript" src="./x3dom/x3dom.js"></script>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="X-UA-Compatible" content="chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" type="text/css" href="./x3dom/x3dom.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+	<script type="text/javascript" src="./x3dom/x3dom.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-		<!-- X3dom script -->
-		<script>
-			var runtime = null,
-				scene = null
+	<title>Stroubles demo Tour</title>
 
-			initialize = function () {
-				runtime = document.getElementById("x3d").runtime
-				scene = document.getElementById("scene")
-			}
+	<!-- X3dom script -->
+	<script>
+		var runtime = null,
+			scene = null
 
-			function bindMe() {
-				var V = document.getElementById("vp")
-				//mePos = new SFVec3f(0,0,10);
-				V.setAttribute("position", "0 0 10")
-				V.setAttribute("bind", true)
-				//window.alert('bind');
-				runtime = document.getElementById("x3dElement").runtime
-				runtime.resetView()
-			}
+		initialize = function () {
+			runtime = document.getElementById("x3d").runtime
+			scene = document.getElementById("scene")
+		}
 
-			function shapeSwitch() {
-				var id = event.target.value
-				var sw = document.getElementById("sphereSwitch")
-				//var on = 0;
-				//var off = 1;
+		function bindMe() {
+			var V = document.getElementById("vp")
+			//mePos = new SFVec3f(0,0,10);
+			V.setAttribute("position", "0 0 10")
+			V.setAttribute("bind", true)
+			//window.alert('bind');
+			runtime = document.getElementById("x3dElement").runtime
+			runtime.resetView()
+		}
 
-				sw.setAttribute("whichChoice", id)
-				bindMe()
-			}
-		</script>
+		function shapeSwitch(id, url) {
+			// var id = event.target.value
+			var sw = document.getElementById("sphereSwitch")
+			//var on = 0;
+			//var off = 1;
+			closeNav();
+			sw.setAttribute("whichChoice", id)
+			bindMe()
+			window.open(url,'_self');
 
-<script>
-	
+		}
 
-	function openTab() {
-		document.getElementById("myDatapanel").style.width = "750px"
-	}
+		var targLink    = document.getElementById ("scene");
+		var clickEvent  = document.createEvent ('MouseEvents');
+		clickEvent.initEvent ('dblclick', true, true);
+		targLink.dispatchEvent (clickEvent);
+	</script>
 
-	/* Set the width of the sidebar to 0 (hide it) */
-	function closeTab() {
-		document.getElementById("myDatapanel").style.width = "0"
-	}
-</script>
+	<!-- Hamburger open close function -->
+	<script>
+		function openNav() {
+		document.getElementById("mySidebar").style.width = "250px";
+		document.getElementById("main").style.marginLeft = "250px";
+		}
 
+		function closeNav() {
+		document.getElementById("mySidebar").style.width = "0";
+		document.getElementById("main").style.marginLeft= "0";
+		}
+	</script>
 
+	<!-- Map and Gallery button click function -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script>
+		$("#btn-map").click(function() {
+		$('html,body').animate({
+			scrollTop: $("#map").offset().top},
+			'slow');
+	});
 
+	</script>
 
+</head>
 
-
-		<!-- TODO: Do a safe remove -->
-		<!-- Sidepanel (Map) styles -->
-		<!-- <style>
-			/* The sidepanel menu */
-			.sidepanel {
-				height: 620px; /* Specify a height */
-				width: 0; /* 0 width - change this with JavaScript */
-				position: fixed; /* Stay in place */
-				z-index: 1; /* Stay on top */
-				top: 250;
-				right: 0;
-				left: 6;
-				background-color: rgba(199, 202, 204, 0.7); /* Black*/
-				overflow-x: hidden; /* Disable horizontal scroll */
-				padding-top: 10px; /* Place content 10px from the top */
-				transition: 0.5s; /* 0.5 second transition effect to slide in the sidepanel */
-			}
-
-			/* The sidepanel links */
-			.sidepanel a {
-				padding: 8px 8px 8px 40px;
-				text-decoration: none;
-				font-size: 12px;
-				color: #818181;
-				display: block;
-				transition: 0.3s;
-			}
-
-			/* When you mouse over the navigation links, change their color */
-			.sidepanel a:hover {
-				color: #f1f1f1;
-			}
-
-			.xl65 {
-				font-weight: 600;
-			}
-
-			.footerImg {
-				z-index: 1;
-				bottom: 20px;
-				left: 0px;
-			}
-		</style> -->
-
-		<style>
-
-			/* Style the button that is used to open the sidepanel */
-			.openbtn {
-				font-size: 14px;
-				cursor: pointer;
-				background-color: #111;
-				color: white;
-				padding: 10px 15px;
-				border: none;
-			}
-
-			.openbtn:hover {
-				background-color: #444;
-			}
-
-			.Datapanel {
-				height: 550px; /* Specify a height */
-				width: 0; /* 0 width - change this with JavaScript */
-				position: fixed; /* Stay in place */
-				z-index: 1; /* Stay on top */
-				top: 242;
-				left: 40;
-				/*background-color: rgba(224, 224, 224, 0.9); */
-				overflow-x: hidden; /* Disable horizontal scroll */
-				padding-top: 10px; /* Place content 10px from the top */
-				padding-left: 4px;
-				transition: 1s; /* 1 second transition effect to slide in the sidepanel */
-			}
-
-			/* Position and style the close button (top L corner) */
-			.Datapanel .closebtn {
-				position: absolute;
-				top: 0px;
-				left: 18px;
-				font-size: 33px;
-				color: black;
-				margin-left: 10px;
-				background-color: white;
-				padding: 2px;
-				padding-top: 1px;
-				margin-top: 5px;
-			}
-		</style>
-	</head>
-
-	<body>
-		<header>
-			<h1>Stroubles Creek Tour</h1>
-		</header>
-
-		<!-- x3dom element -->
-		<div class="x3dom-container">
-			<x3d
-				id="x3dElement"
-				showStat="false"
-				showLog="false"
-				disableDoubleClick="true"
-			>
-				<scene>
-					<environment id="gamma" gammaCorrectionDefault="linear"></environment>
-
-					<navigationInfo
-						DEF="NavigationInfo1"
-						avatarSize=".25 1.6 .75"
-						visibilityLimit="100"
-						speed="0.2"
-						headlight="false"
-						type='"TURNTABLE" "ANY"'
-					></navigationInfo>
-
-					<viewpoint
-						id="vp"
-						centerOfRotation="0 0 0"
-						description='"Plot Center 1"'
-						fieldOfView="0.8"
-						position="0 0 10"
-					></viewpoint>
-
-					<worldInfo
-						info='"Watershed Training with Professor Hession" "www.vt.edu" "Nicholas Polys" "Photosphere"'
-						title="ICAT Virtual Tour"
-					></worldInfo>
-
-					<switch id="sphereSwitch" whichChoice="0">
-						<inline url="./Spheres/TriplePoint.x3d"></inline>
-						<inline url="./Spheres/Spout.x3d"></inline>
-						<inline url="./Spheres/Spout_NG.x3d"></inline>
-						<inline url="./Spheres/Owens.x3d"></inline>
-						<inline url="./Spheres/Owens_NG.x3d"></inline>
-						<inline url="./Spheres/Robinson.x3d"></inline>
-						<inline url="./Spheres/Robinson_NG.x3d"></inline>
-					</switch>
-				</scene>
-			</x3d>
-
-			<!-- Location Navigation -->
-			<div class="navigation-panel">
-				<div id="X3DOM_AOPT_Links" class="navigation-locations">
-					<h3>Locations</h3>
-					<div class="input-group">
-						<input
-							type="radio"
-							id="spherC"
-							name="sp"
-							value="0"
-							checked
-							onclick="shapeSwitch()"
-						/>
-						<label for="spherC">Triple Point</label>
-					</div>
-
-					<div class="input-group">
-						<input
-							type="radio"
-							id="spherS"
-							name="sp"
-							value="1"
-							onclick="shapeSwitch()"
-						/>
-						<label for="spherS">Spout Spring</label>
-					</div>
-
-					<div class="input-group">
-						<input
-							type="radio"
-							id="spherW"
-							name="sp"
-							value="2"
-							onclick="shapeSwitch()"
-						/>
-
-						<label for="spherW">Spout Spring (no narration)</label>
-						
-					</div>
-
-					<div class="input-group">
-						<input
-							type="radio"
-							id="spherN"
-							name="sp"
-							value="3"
-							onclick="shapeSwitch()"
-						/>
-						<label for="spherN">Owens Spring</label>
-					</div>
-
-					<div class="input-group">
-						<input
-							type="radio"
-							id="spherE"
-							name="sp"
-							value="4"
-							onclick="shapeSwitch()"
-						/>
-						<label for="spherE">Owens Spring (no narration)</label>
-					</div>
-
-					<div class="input-group">
-						<input
-							type="radio"
-							id="spherR"
-							name="sp"
-							value="5"
-							onclick="shapeSwitch()"
-						/>
-						<label for="spherR">Robinson Spring </label>
-					</div>
-
-					<div class="input-group">
-						<input
-							type="radio"
-							id="spherRN"
-							name="sp"
-							value="6"
-							onclick="shapeSwitch()"
-						/>
-						<label for="spherRN">Robinson Spring (no narration)</label>
-					</div>
-					<br>
-
-
-					<button class="openTab" onclick="openTab()">&#9776; Open Gallery</button> <!--button for web gallery-->
-					<div id="myDatapanel" class="Datapanel">
-						<a href="javascript:void(0)" class="closebtn" onclick="closeTab()">&times;</a><br>
-						<style>
-						  
-						</style> 
-						
-						
-						<div id="root" class="gallery-container"></div>
-						   <script src="./example.js"></script>
-					   
-						 
-					   </div>
-					   
-						   </div> 
-
-					<!-- TODO: CHeck w prof if he wants to put this on site -->
-					<!-- <a href="https://youtu.be/Yg3N-BmKvWM" target="_blank"
-					>Launch Drone Video</a
-				> -->
-				</div>
-			</div>
-
-
-
-			
-			
-			
-
-
-
-			<!-- Map toggle button -->
-			<div class="x3d-actions">
-				<div class="navigation-toggle">
-					<div class="line one"></div>
-					<div class="line two"></div>
-					<div class="line three"></div>
-				</div>
-
-				<div class="map-toggle">
-					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-						<defs>
-							<style>
-								.cls-1 {
-									fill: #231f20;
-								}
-							</style>
-						</defs>
-						<g id="maps">
-							<path
-								class="cls-1"
-								d="m29 6.94-8.52-2.83h-.06A1 1 0 0 0 20 4a.89.89 0 0 0-.43.11h-.08l-2.85 1.08a5 5 0 0 0-1-1.59 5 5 0 0 0-7.9.77 4.87 4.87 0 0 0-.47 1L3.94 4.26A1.47 1.47 0 0 0 2 5.66V7a1 1 0 0 0 2 0v-.61l3 1a5 5 0 0 0 .51 1.87l3.57 7.19a1 1 0 0 0 1.8 0l3.57-7.19A5.06 5.06 0 0 0 17 7.41a1.47 1.47 0 0 0 0-.21l2-.76v18.87l-6 2.25V20a1 1 0 0 0-2 0v7.61l-7-2.33V11a1 1 0 0 0-2 0v14.66a1.48 1.48 0 0 0 1 1.4l8.51 2.83h.07A.92.92 0 0 0 12 30a1 1 0 0 0 .44-.11h.07L20 27.06l2.66.89a1 1 0 0 0 .64-1.9l-2.3-.77V6.39l7 2.33v18.89l-.68-.23a1 1 0 0 0-.64 1.9l1.38.46a1.48 1.48 0 0 0 .46.08 1.53 1.53 0 0 0 .87-.28 1.5 1.5 0 0 0 .61-1.2v-20a1.48 1.48 0 0 0-1-1.4zM14.68 8.37 12 13.75 9.32 8.37a3 3 0 0 1 .14-2.95A3 3 0 0 1 14.19 5a3.07 3.07 0 0 1 .8 2.3 3.18 3.18 0 0 1-.31 1.07z"
-							/>
-							<path class="cls-1" d="M12 6a1 1 0 1 0 1 1 1 1 0 0 0-1-1z" />
-						</g>
-					</svg>
-					<p>Open Map</p>
-				</div>
-			</div>
+<body>
+	<!-- Header -->
+	<div id="header">
+		<div id="hamburger">
+			<button class="openbtn" onclick="openNav()" style="height: 70%; background: #222;"><i class="fa-solid fa-bars fa-2x" style="color: whitesmoke;"></i></button>
 		</div>
-
-		<!-- Map View -->
-		<div class="map-modal">
-			<div class="map-container">
-				<iframe
-					src="https://www.google.com/maps/d/u/0/embed?mid=1paONTEB41NAS6rf4Z3brwpHljFxFmmYZ&ehbc=2E312F"
-					width="640"
-					height="480"
-				></iframe>
-			</div>
-			<div class="close-map">Close</div>
+		<div id="title">
+			<h1 style="text-align: center; color: whitesmoke;">Stroubles Tour</h1>
 		</div>
-		<!-- Mobile view button -->
-		<!-- <div
-			id="Plot_Data"
-			style="
-				margin: 2px;
-				padding: 4px 4px 4px 4px;
-				background-color: rgba(199, 202, 204, 0.7);
-				position: absolute;
-				z-index: 1000;
-				right: 0px;
-				top: 0px;
-			"
-		>
-			<a
-				id="start_demo"
-				class="btn btn-lg btn-success py-1"
-				href="#"
-				role="button"
-				>Click For Mobile</a
-			>
+		<div id="buttons">
+			<button id="btn-map" onClick="document.getElementById('map-and-gallery').scrollIntoView();"><i class="fa-solid fa-map-location-dot" style="margin: 0 10% 0 0;"></i>Open Maps</button>
+			<button id="btn-gallery" onClick="document.getElementById('map-and-gallery').scrollIntoView();"><i class="fa-solid fa-camera-retro" style="margin: 0 10% 0 0;"></i>Open Gallery</button>
+		</div>
+	</div>
+
+	<!-- Main body start -->
+	<div id="main">
+
+		<!-- <div id="mySidenav" class="sidenav">
+			<a href="#" id="spherC" onclick="shapeSwitch(0,'')">Triple Point</a>
+			<a href="#" id="spherS" onclick="shapeSwitch(1,'')">Spout Spring</a>
+			<a href="#" id="spherW" onclick="shapeSwitch(2,'')">Spout Spring (no narration)</a>
+			<a href="#" id="spherN" onclick="shapeSwitch(3,'')">Owens Spring</a>
+			<a href="#" id="spherE" onclick="shapeSwitch(4,'')">Owens Spring (no narration)</a>
+			<a href="#" id="spherR" onclick="shapeSwitch(5,'')">Robinson Spring</a>
+			<a href="#" id="spherRN" onclick="shapeSwitch(6,'')">Robinson Spring (no narration)</a>
 		</div> -->
 
-		<!-- axes list -->
-		<ul>
-			<li>
-				X-axis - beta (&beta;): <span id="Orientation_b">0</span
-				><span>&deg;</span>
-			</li>
-			<li>
-				Y-axis - gamma (&gamma;): <span id="Orientation_g">0</span
-				><span>&deg;</span>
-			</li>
-			<li>
-				Z-axis - alpha(&alpha;): <span id="Orientation_a">0</span
-				><span>&deg;</span>
-			</li>
-		</ul>
-		<p style="margin-top: 1rem">
-			Num. of datapoints:
-			<span class="badge badge-warning" id="num-observed-events">0</span>
-		</p><br>
+		<!-- Sidebar start-->
+		<div id="mySidebar" class="sidebar">
+			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+			<a href="#" id="spherC" onclick="shapeSwitch(0,'')">Triple Point</a>
+			<a href="#" id="spherS" onclick="shapeSwitch(1,'')">Spout Spring</a>
+			<a href="#" id="spherW" onclick="shapeSwitch(2,'')">Spout Spring <span>&nbsp;&emsp14;</span>(no narration)</a>
+			<a href="#" id="spherN" onclick="shapeSwitch(3,'')">Owens Spring</a>
+			<a href="#" id="spherE" onclick="shapeSwitch(4,'')">Owens Spring <span>&nbsp; &nbsp;</span> (no narration)</a>
+			<a href="#" id="spherR" onclick="shapeSwitch(5,'')">Robinson Spring</a>
+			<a href="#" id="spherRN" onclick="shapeSwitch(6,'')">Robinson Spring (no narration)</a>
+		</div>
+		<!-- Sidebar end -->
 
-		<!-- Footer - External links -->
-		<footer>
-			<h3>Useful links:</h3>
-			<ul class="links">
-				<li>
-					<a
-						href="https://vtstreamlab.weebly.com/live-data.html "
-						target="_blank"
-						>Live Data</a
-					>
-				</li>
-				<li>
-					<a
-						href="https://earth.google.com/web/@37.24092548,-80.46499556,603.28376228a,23498.81789472d,30y,0h,0t,0r/data=MicKJQojCiExOHdReVd3NHM0OVBKNmRad3N3Sk90cjduOExPYmhrbkk"
-						target="_blank"
-						>GE Tour</a
-					>
-				</li>
-				<li>
-					<a
-						href="https://virginiatech.maps.arcgis.com/apps/MapTour/index.html?appid=be623b31d4df4d2fbcfafa3fc8ec8c1b "
-						target="_blank"
-						>BMP Tour</a
-					>
-				</li>
+		<!-- x3d start -->
+		<div id="x3d-div">
+			<div id="x3dom-container" class="x3dom-container">
+				<x3d
+					id="x3dElement"
+					showStat="false"
+					showLog="false"
+					disableDoubleClick="true"
+				>
+					<scene id="scene">
+						<environment id="gamma" gammaCorrectionDefault="linear"></environment>
 
-				<li>
-					<a
-						href="https://ashleyvn.github.io/HCI-Design/ "
-						target="_blank"
-						>InfoVis Site</a
-					>
-				</li>
-			</ul>
-		</footer>
+						<navigationInfo
+							DEF="NavigationInfo1"
+							avatarSize=".25 1.6 .75"
+							visibilityLimit="100"
+							speed="0.2"
+							headlight="false"
+							type='"TURNTABLE" "ANY"'
+						></navigationInfo>
 
-		<!-- Mobile view script -->
-		<script>
-			var runtime = null
-			var degreeToRadiansFactor = Math.PI / 180
+						<!-- <viewpoint
+							id="vp"
+							centerOfRotation="0 0 0"
+							description='"Plot Center 1"'
+							fieldOfView="0.8"
+							position="0 0 10"
+						></viewpoint> -->
+						<Viewpoint id = "vp" position="-6.49830 3.94167 20.68788" orientation="-0.50523 -0.85950 -0.07748 0.35315"
+							zNear="0.00634" zFar="63.43376" centerOfRotation="0.00000 0.00000 0.00000" fieldOfView="0.80000" description="Plot Center 1"></Viewpoint>
 
-			x3dom.fields.Quaternion.prototype.setFromEulerYXZ = function (
-				alpha,
-				beta,
-				gamma
-			) {
-				var c1 = Math.cos(alpha / 2)
-				var c2 = Math.cos(beta / 2)
-				var c3 = Math.cos(gamma / 2)
-				var s1 = Math.sin(alpha / 2)
-				var s2 = Math.sin(beta / 2)
-				var s3 = Math.sin(gamma / 2)
+						<worldInfo
+							info='"Watershed Training with Professor Hession" "www.vt.edu" "Nicholas Polys" "Photosphere"'
+							title="ICAT Virtual Tour"
+						></worldInfo>
 
-				this.x = s1 * c2 * c3 + c1 * s2 * s3
-				this.y = c1 * s2 * c3 - s1 * c2 * s3
-				this.z = c1 * c2 * s3 - s1 * s2 * c3
-				this.w = c1 * c2 * c3 + s1 * s2 * s3
-			}
+						<switch id="sphereSwitch" whichChoice="0">
+							<inline url="./Spheres/TriplePoint.x3d"></inline>
+							<inline url="./Spheres/Spout.x3d"></inline>
+							<inline url="./Spheres/Spout_NG.x3d"></inline>
+							<inline url="./Spheres/Owens.x3d"></inline>
+							<inline url="./Spheres/Owens_NG.x3d"></inline>
+							<inline url="./Spheres/Robinson.x3d"></inline>
+							<inline url="./Spheres/Robinson_NG.x3d"></inline>
+						</switch>
+					</scene>
+				</x3d>
+			</div>
+			<!-- x3d end -->
 
-			function deg2rad(deg) {
-				return deg * degreeToRadiansFactor
-			}
+			<div id="map-and-gallery">
+				<!-- Map start -->
+				<div id="map">
+					<div class="map-container">
+						<iframe src="https://www.google.com/maps/d/embed?mid=1HupRvhbBSB2jp6AX1wOb57oevycHCiU&ehbc=2E312F" width="640" height="480"></iframe>
+					</div>
+				</div>
+				<!-- Map end -->
 
-			/* function added by sheeban for reference */
-			function handleOrientation(event) {
-				updateFieldIfNotNull("Orientation_a", event.alpha)
-				updateFieldIfNotNull("Orientation_b", event.beta)
-				updateFieldIfNotNull("Orientation_g", event.gamma)
+				<!-- Gallery start -->
+				<div id="gallery">
+					<div class="gallery-container">
+						<!-- Container for the image gallery -->
+						<!-- Full-width images with number text -->
+						<div class="mySlides">
+							<div class="numbertext">1 / 6</div>
+								<img src="./spout spring/1.jpg">
+							</div>
 
-				incrementEventCount()
+							<div class="mySlides">
+							<div class="numbertext">2 / 6</div>
+								<img src="./spout spring/1t.jpg">
+							</div>
 
-				var V = document.getElementById("vp")
-				var degtorad = Math.PI / 180 // Degree-to-Radian conversion
+							<div class="mySlides">
+							<div class="numbertext">3 / 6</div>
+								<img src="./spout spring/2.jpg">
+							</div>
 
-				var a = event.alpha * degtorad
-				var b = event.beta * degtorad
-				var c = event.gamma * degtorad
+							<div class="mySlides">
+							<div class="numbertext">4 / 6</div>
+								<img src="./spout spring/2t.jpg">
+							</div>
 
-				// phone rotation offset
-				// works now in LANDSCAPE MODE !!!!!!!!!!!!!!!
-				/// note order and sign here !
-				if (!window.ondeviceorientation) {
-					var q0 = x3dom.fields.Quaternion.axisAngle(
-						new x3dom.fields.SFVec3f(0, 0, 1),
-						-deg2rad(window.orientation)
-					)
-					// var q0 = x3dom.fields.Quaternion.axisAngle(new x3dom.fields.SFVec3f(0,0,1),-Math.PI/2);
-					var q = new x3dom.fields.Quaternion()
+							<div class="mySlides">
+							<div class="numbertext">5 / 6</div>
+								<img src="./spout spring/3.jpg">
+							</div>
 
-					q.setFromEulerYXZ(b, a, -c) // our own implemented function
 
-					var q1 = new x3dom.fields.Quaternion.axisAngle(
-						new x3dom.fields.SFVec3f(1, 0, 0),
-						-Math.PI / 2
-					) // device orientation points upwards. rotate down to camera orientation
-					//
-					q = q.multiply(q1)
-					q = q.multiply(q0)
+							<div class="mySlides">
+							<div class="numbertext">6 / 6</div>
+								<img src="./spout spring/3t.jpg">
+							</div>
 
-					//   console.log('q0'+q0);
-					//   console.log('q1'+q1);
-					//   console.log('q'+q);
+							<!-- Next and previous buttons -->
+							<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+							<a class="next" onclick="plusSlides(1)">&#10095;</a>
 
-					var aa = q.toAxisAngle()
+							<!-- Image text -->
+							<div class="caption-container">
+							<p id="caption"></p>
+							</div>
 
-					//console.log(aa);
+							<!-- Thumbnail images -->
+							<!-- <div class="row">
+							<div class="column">
+								<img class="demo cursor" src="./spout spring/1.jpg" style="width:100%" onclick="currentSlide(1)" alt="The Woods">
+							</div>
+							<div class="column">
+								<img class="demo cursor" src="./spout spring/1t.jpg" style="width:100%" onclick="currentSlide(2)" alt="Cinque Terre">
+							</div>
+							<div class="column">
+								<img class="demo cursor" src="./spout spring/2.jpg" style="width:100%" onclick="currentSlide(3)" alt="Mountains and fjords">
+							</div>
+							<div class="column">
+								<img class="demo cursor" src="./spout spring/2t.jpg" style="width:100%" onclick="currentSlide(4)" alt="Northern Lights">
+							</div>
+							<div class="column">
+								<img class="demo cursor" src="./spout spring/3.jpg" style="width:100%" onclick="currentSlide(5)" alt="Nature and sunrise">
+							</div>
+							<div class="column">
+								<img class="demo cursor" src="./spout spring/3t.jpg" style="width:100%" onclick="currentSlide(6)" alt="Snowy Mountains">
+							</div>
+						</div> -->
+					</div>
+				</div>
+				<!-- Gallery end -->
+			</div>
+		</div>
+	</div>
+	<!-- Main body end -->
 
-					V.setAttribute(
-						"orientation",
-						aa[0].x + " " + aa[0].y + " " + aa[0].z + " " + aa[1]
-					)
-				} else {
-					// var q0 = x3dom.fields.Quaternion.axisAngle(new x3dom.fields.SFVec3f(0,0,1),-Math.PI/2);
-					var q0 = x3dom.fields.Quaternion.axisAngle(
-						new x3dom.fields.SFVec3f(0, 0, 1),
-						-deg2rad(window.orientation)
-					)
-					var q = new x3dom.fields.Quaternion()
-					q.setFromEulerYXZ(b, a, -c) // our own implemented function
+	<!-- Footer start -->
+	<div id="footer">
+		<div id="usefullinks"><p style="text-align: center; margin: 0; padding: 0; font-weight: 800;">Useful Links</p></div>
+		<div id="links">
+			<div class="linkspadding">
+				<button class="btn-links"><a
+					href="https://vtstreamlab.weebly.com/live-data.html "
+					target="_blank"
+					>Live Data</a></button>
+			</div>
+			<div class="linkspadding">
+				<button class="btn-links"><a
+					href="https://earth.google.com/web/@37.24092548,-80.46499556,603.28376228a,23498.81789472d,30y,0h,0t,0r/data=MicKJQojCiExOHdReVd3NHM0OVBKNmRad3N3Sk90cjduOExPYmhrbkk"
+					target="_blank"
+					>GE Tour</a></button>
 
-					var q1 = new x3dom.fields.Quaternion.axisAngle(
-						new x3dom.fields.SFVec3f(1, 0, 0),
-						-Math.PI
-					) // device orientation points upwards. rotate down to camera orientation
-					//
-					q = q.multiply(q1)
-					q = q.multiply(q0)
+			</div>
+			<div class="linkspadding">
+				<button class="btn-links"><a
+					href="https://virginiatech.maps.arcgis.com/apps/MapTour/index.html?appid=be623b31d4df4d2fbcfafa3fc8ec8c1b "
+					target="_blank"
+					>BMP Tour</a></button>
+			</div>
+			<div class="linkspadding">
+				<button class="btn-links"><a
+					href="https://ashleyvn.github.io/HCI-Design/ "
+					target="_blank"
+					>InfoVis Site</a></button>
+			</div>
+		</div>
+	</div>
+	<!-- Footer end -->
 
-					var aa = q.toAxisAngle()
+</body>
 
-					V.setAttribute(
-						"orientation",
-						aa[0].x + " " + aa[0].y + " " + aa[0].z + " " + aa[1]
-					)
-				}
-			}
+<script>
+	let slideIndex = 1;
+showSlides(slideIndex);
 
-			function incrementEventCount() {
-				let counterElement = document.getElementById("num-observed-events")
-				let eventCount = parseInt(counterElement.innerHTML)
-				counterElement.innerHTML = eventCount + 1 //truncated the change here
-			}
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
 
-			// can tweak this function to get less precision
-			function updateFieldIfNotNull(fieldName, value, precision = 1) {
-				if (value != null)
-					document.getElementById(fieldName).innerHTML =
-						value.toFixed(precision)
-			}
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
 
-			function handleMotion(event) {
-				updateFieldIfNotNull(
-					"Accelerometer_gx",
-					event.accelerationIncludingGravity.x
-				)
-				updateFieldIfNotNull(
-					"Accelerometer_gy",
-					event.accelerationIncludingGravity.y
-				)
-				updateFieldIfNotNull(
-					"Accelerometer_gz",
-					event.accelerationIncludingGravity.z
-				)
-
-				updateFieldIfNotNull("Accelerometer_x", event.acceleration.x)
-				updateFieldIfNotNull("Accelerometer_y", event.acceleration.y)
-				updateFieldIfNotNull("Accelerometer_z", event.acceleration.z)
-
-				updateFieldIfNotNull("Accelerometer_i", event.interval, 2)
-
-				// need to get rid of this code Gyroscope_z is not reffering
-				updateFieldIfNotNull("Gyroscope_z", event.rotationRate.alpha)
-				updateFieldIfNotNull("Gyroscope_x", event.rotationRate.beta)
-				updateFieldIfNotNull("Gyroscope_y", event.rotationRate.gamma)
-				updateFieldIfNotNull("Gyroscope_y", event.rotationRate.x)
-				updateFieldIfNotNull("Gyroscope_y", event.rotationRate.y)
-				updateFieldIfNotNull("Gyroscope_y", event.rotationRate.z)
-				updateFieldIfNotNull("Gyroscope_y", event.rotationRate.w)
-
-				incrementEventCount()
-			}
-
-			let is_running = false
-			let demo_button = document.getElementById("start_demo")
-			demo_button.onclick = function (e) {
-				e.preventDefault()
-
-				// Request permission for iOS 13+ devices
-				if (
-					DeviceMotionEvent &&
-					typeof DeviceMotionEvent.requestPermission === "function"
-				) {
-					DeviceMotionEvent.requestPermission()
-				}
-
-				if (is_running) {
-					window.removeEventListener("devicemotion", handleMotion)
-					window.removeEventListener("deviceorientation", handleOrientation)
-					demo_button.innerHTML = "Start demo"
-					demo_button.classList.add("btn-success")
-					demo_button.classList.remove("btn-danger")
-					is_running = false
-				} else {
-					window.addEventListener("devicemotion", handleMotion)
-					window.addEventListener("deviceorientation", handleOrientation)
-					document.getElementById("start_demo").innerHTML = "Stop demo"
-					demo_button.classList.remove("btn-success")
-					demo_button.classList.add("btn-danger")
-					is_running = true
-				}
-			}
-		</script>
-	</body>
-
-	<script type="text/javascript" src="/index.js"></script>
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("demo");
+  let captionText = document.getElementById("caption");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+  captionText.innerHTML = dots[slideIndex-1].alt;
+}
+</script>
 </html>
