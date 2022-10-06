@@ -108,13 +108,13 @@
 		<!-- Sidebar start-->
 		<div id="mySidebar" class="sidebar">
 			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-			<a href="#" id="spherC" onclick="shapeSwitch(0,'')">Triple Point</a>
-			<a href="#" id="spherS" onclick="shapeSwitch(1,'')">Spout Spring</a>
-			<a href="#" id="spherW" onclick="shapeSwitch(2,'')">Spout Spring <span>&nbsp;&emsp14;</span>(no narration)</a>
-			<a href="#" id="spherN" onclick="shapeSwitch(3,'')">Owens Spring</a>
-			<a href="#" id="spherE" onclick="shapeSwitch(4,'')">Owens Spring <span>&nbsp; &nbsp;</span> (no narration)</a>
-			<a href="#" id="spherR" onclick="shapeSwitch(5,'')">Robinson Spring</a>
-			<a href="#" id="spherRN" onclick="shapeSwitch(6,'')">Robinson Spring (no narration)</a>
+			<a href="index.html" id="spherC" onclick="shapeSwitch(0,'index.html')">Triple Point</a>
+			<a href="spout.html" id="spherS" onclick="shapeSwitch(1,'spout.html')">Spout Spring</a>
+			<a href="spoutng.html" id="spherW" onclick="shapeSwitch(2,'spoutng.html')">Spout Spring <span>&nbsp;&emsp14;</span>(no narration)</a>
+			<a href="owens.html" id="spherN" onclick="shapeSwitch(3,'owens.html')">Owens Spring</a>
+			<a href="owensng.html" id="spherE" onclick="shapeSwitch(4,'owensng.html')">Owens Spring <span>&nbsp; &nbsp;</span> (no narration)</a>
+			<a href="robinson.html" id="spherR" onclick="shapeSwitch(5,'robinson.html')">Robinson Spring</a>
+			<a href="robinsonng.html" id="spherRN" onclick="shapeSwitch(6,'robinsonng.html')">Robinson Spring (no narration)</a>
 		</div>
 		<!-- Sidebar end -->
 
@@ -172,7 +172,7 @@
 				<!-- Map start -->
 				<div id="map">
 					<div class="map-container">
-						<iframe src="https://www.google.com/maps/d/embed?mid=1HupRvhbBSB2jp6AX1wOb57oevycHCiU&ehbc=2E312F" width="640" height="480"></iframe>
+						<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1HupRvhbBSB2jp6AX1wOb57oevycHCiU&ehbc=2E312F" width="640" height="480"></iframe>
 					</div>
 				</div>
 				<!-- Map end -->
@@ -317,5 +317,11 @@ function showSlides(n) {
   dots[slideIndex-1].className += " active";
   captionText.innerHTML = dots[slideIndex-1].alt;
 }
+</script>
+<script>
+	window.onload=function(){
+ 	// document.getElementById("btn-map").click();
+	 shapeSwitch(0,'');
+};
 </script>
 </html>
