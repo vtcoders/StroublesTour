@@ -279,6 +279,7 @@ button{
   /* Hide the images by default */
   .mySlides {
 	display: none;
+	position: relative;
   }
 
   /* Add a pointer when hovering over the thumbnail images */
@@ -323,7 +324,7 @@ button{
 	background-color: rgba(0, 0, 0, 0.8);
 	padding: 8px 12px;
 	position: absolute;
-	top: 1293px;
+	top: 91%;
     right: 350px;
     font-size: 20px;  }
 
