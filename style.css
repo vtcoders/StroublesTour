@@ -232,10 +232,13 @@ button{
 }
 
 #gallery{
+	display: flex;
 	flex: 1;
 }
 
 .gallery-container{
+	position: relative;
+	display: flex;
 	width: 98%;
 	/* display: flex; */
 	justify-content: center;
@@ -292,7 +295,7 @@ button{
   .next {
 	cursor: pointer;
 	position: absolute;
-	top: 135%;
+	top: 55%;
 	width: auto;
 	padding: 16px;
 	margin-top: -50px;
@@ -312,6 +315,10 @@ button{
 	border-radius: 3px 0 0 3px;
   }
 
+  .prev {
+	left: 1%;
+	border-radius: 3px 0 0 3px;
+  }
   /* On hover, add a black background color with a little bit see-through */
   /* .prev:hover,
   .next:hover {
@@ -324,8 +331,8 @@ button{
 	background-color: rgba(0, 0, 0, 0.8);
 	padding: 8px 12px;
 	position: absolute;
-	top: 91%;
-    right: 350px;
+	bottom: 1%;
+    left: 45%;
     font-size: 20px;  }
 
   .mySlides > img{
@@ -333,6 +340,24 @@ button{
 	width: 100%;
 	height: 480px;
   }
+
+
+  .zoom{
+	position: absolute;
+    right: 0%;
+    bottom: 1%;
+	color: #f2f2f2;
+	background-color: rgba(0, 0, 0, 0.8);
+	padding: 8px 12px;
+	}
+
+	.zoomlink{
+		color: #f2f2f2;
+		text-decoration: none;
+
+	}
+
+
   /* Container for image text */
   .caption-container {
 	text-align: center;
