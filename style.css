@@ -29,6 +29,11 @@ html, body {
 	align-items: center;
 }
 
+#hamburger > button{
+	height: 70%;
+	background: #222;
+}
+
 /* Style the button that is used to open the sidepanel */
 .sidebar {
 	height: 100%;
@@ -161,6 +166,16 @@ html, body {
 
 #title{
 	flex: 3
+}
+
+#title > h1{
+	display: flex;
+    justify-content: center;
+    color: whitesmoke;
+    font-weight: bold;
+    font-size: 2em;
+    margin: 20px 0px;
+    padding: 0px;
 }
 
 #buttons{
@@ -406,3 +421,33 @@ button{
 	color: #111;
 	text-decoration: none;
   }
+
+  @media only screen and (max-width: 600px){
+	#hamburger{
+		flex: 0.1;
+		width: 20%;
+		height: auto;
+		align-items: center;
+	}
+
+	#title > h1{
+	  font-size: 120%;
+	  justify-content: center;
+	}
+
+	.open{
+		display: none;
+	}
+
+	#map-and-gallery{
+		flex-direction: column;
+	}
+
+	#x3dElement{
+	  height: 70vh;
+	  width: 100%;
+
+	}
+
+
+}
