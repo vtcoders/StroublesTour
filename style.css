@@ -237,13 +237,13 @@ button{
 	width: 100%;
 	display: flex;
 	justify-content: center;
-	margin: 3% 0;
+	margin: 3% 2%;
 }
 
 .map-container iframe {
 	border: 1px solid #222;
 	border-radius: 8px;
-	width: 95%;
+	width: 100%;
 }
 
 #gallery{
@@ -257,7 +257,7 @@ button{
 	width: 98%;
 	/* display: flex; */
 	justify-content: center;
-	margin: 3% 0;
+	margin: 3% 2%;
 }
 
 #footer{
@@ -296,6 +296,7 @@ button{
 
   /* Hide the images by default */
   .mySlides {
+	/* width: 100%; */
 	display: none;
 	position: relative;
   }
@@ -423,6 +424,14 @@ button{
   }
 
   @media only screen and (max-width: 600px){
+
+	#title > h1{
+	  font-size: 120%;
+	  justify-content: center;
+	}
+}
+
+@media only screen and (max-width: 850px) {
 	#hamburger{
 		flex: 0.1;
 		width: 20%;
@@ -431,7 +440,6 @@ button{
 	}
 
 	#title > h1{
-	  font-size: 120%;
 	  justify-content: center;
 	}
 
@@ -449,5 +457,4 @@ button{
 
 	}
 
-
-}
+  }
