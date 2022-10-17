@@ -23,7 +23,6 @@ html, body {
 }
 
 #hamburger{
-	flex: 0.7;
 	display: flex;
 	margin-left: 3%;
 	align-items: center;
@@ -165,7 +164,7 @@ html, body {
 	}
 
 #title{
-	flex: 3
+	flex: 2.8
 }
 
 #title > h1{
@@ -184,6 +183,21 @@ html, body {
 	flex-direction: row;
 	justify-content: space-evenly;
 	align-items: center;
+}
+
+#btn-mobile, #btn-map  {
+	margin: 5px;
+
+}
+
+.btn-mobile {
+	margin: 5px;
+
+}
+
+#btn-gallery{
+	margin: 5px 10px 5px 5px;
+
 }
 
 button{
@@ -212,7 +226,7 @@ button{
 
 #x3dom-container{
 	flex: 5;
-	padding: 0;
+	padding: 15px 20px;
 }
 
 #x3dElement{
@@ -271,7 +285,7 @@ button{
 	flex: 1;
 	color: whitesmoke;
 	align-items: center;
-	margin: 1% 40% 1% 40%;
+	margin: 10px 0;
 }
 
 #links{
@@ -431,7 +445,7 @@ button{
 	}
 }
 
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: 1043px) {
 	#hamburger{
 		flex: 0.1;
 		width: 20%;
@@ -452,9 +466,13 @@ button{
 	}
 
 	#x3dElement{
-	  height: 70vh;
+	  height: 100vh;
 	  width: 100%;
 
 	}
 
+  }
+
+  #datapoints{
+	display: none;
   }
