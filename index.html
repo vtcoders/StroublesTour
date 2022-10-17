@@ -90,9 +90,9 @@
 			<h1>Stroubles Tour</h1>
 		</div>
 		<div id="buttons">
-			<a id="start_demo" class="btn btn-lg btn-success py-1" href="#" role="button" style="text-decoration: none; color: whitesmoke;">Click to get values</a>
-			<button id="btn-map" onClick="document.getElementById('map-and-gallery').scrollIntoView();"><i class="fa-solid fa-map-location-dot" style="margin: 0 10% 0 0;"></i><span class="open">Open Maps</span></span></button>
-			<button id="btn-gallery" onClick="document.getElementById('map-and-gallery').scrollIntoView();"><i class="fa-solid fa-camera-retro" style="margin: 0 10% 0 0;"></i><span class="open">Open Gallery</span></button>
+			<button id="start_demo" class="btn-mobile"><a class="btn btn-lg btn-success py-1" href="#" role="button" style="text-decoration: none; color: black;">Mobile</a></button>
+			<button id="btn-map" onClick="document.getElementById('map').scrollIntoView();"><i class="fa-solid fa-map-location-dot" style="margin: 0 10% 0 0;"></i><span class="open">Maps</span></span></button>
+			<button id="btn-gallery" onClick="document.getElementById('gallery').scrollIntoView();"><i class="fa-solid fa-camera-retro" style="margin: 0 10% 0 0;"></i><span class="open">Gallery</span></button>
 		</div>
 	</div>
 
@@ -190,7 +190,7 @@
 							<div class="numbertext">1 / 4</div>
 							<img src="./assets/images/triplepoint/1.png">
 							<div class="zoom">
-								<a class="zoomlink" href="https://metagrid2.sv.vt.edu/~parthranawat/StroublesTour/assets/images/triplepoint/1.png" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Open image in a new tab"><i class="fa-solid fa-up-right-from-square fa-2x"></i></a>
+								<a class="zoomlink" href="https://metagrid2.sv.vt.edu/~parthranawat/StroublesTour/assets/images/triplepoint/1.png" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Open image in a new tab"><i class="fa-solid fa-up-right-from-square fa-xl"></i></a>
 							</div>
 						</div>
 
@@ -294,13 +294,15 @@
 		</div>
 	</div>
 	<!-- Footer end -->
+	<div id="datapoints">
+		<ul>
+			<li>X-axis (&gamma;): <span id="Orientation_g">0</span><span>&deg;</span></li>
+			<li>Y-axis (&beta;): <span id="Orientation_b">0</span><span>&deg;</span></li>
+			<li>Z-axis (&alpha;): <span id="Orientation_a">0</span><span>&deg;</span></li>
+		  </ul>
+		   <p style="margin-top:1rem;">Num. of datapoints: <span class="badge badge-warning" id="num-observed-events">0</span></p>
+	</div>
 
-	<ul>
-		<li>X-axis (&gamma;): <span id="Orientation_g">0</span><span>&deg;</span></li>
-		<li>Y-axis (&beta;): <span id="Orientation_b">0</span><span>&deg;</span></li>
-		<li>Z-axis (&alpha;): <span id="Orientation_a">0</span><span>&deg;</span></li>
-	  </ul>
-	   <p style="margin-top:1rem;">Num. of datapoints: <span class="badge badge-warning" id="num-observed-events">0</span></p>
 
 </body>
 
@@ -440,6 +442,7 @@ function showSlides(n) {
   let is_running = false;
   let demo_button = document.getElementById("start_demo");
   demo_button.onclick = function(e) {
+	document.getElementById('x3dElement').scrollIntoView();
 	e.preventDefault();
 
 	// Request permission for iOS 13+ devices
@@ -453,16 +456,12 @@ function showSlides(n) {
 	if (is_running){
 	  window.removeEventListener("devicemotion", handleMotion);
 	  window.removeEventListener("deviceorientation", handleOrientation);
-	  demo_button.innerHTML = "Start demo";
-	  demo_button.classList.add('btn-success');
-	  demo_button.classList.remove('btn-danger');
+	  demo_button.innerHTML = "Start";
 	  is_running = false;
 	}else{
 	  window.addEventListener("devicemotion", handleMotion);
 	  window.addEventListener("deviceorientation", handleOrientation);
-	  document.getElementById("start_demo").innerHTML = "Stop demo";
-	  demo_button.classList.remove('btn-success');
-	  demo_button.classList.add('btn-danger');
+	  document.getElementById("start_demo").innerHTML = "Stop";
 	  is_running = true;
 	}
   };

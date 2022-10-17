@@ -4,12 +4,15 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta http-equiv="X-UA-Compatible" content="chrome=1" />
+	<meta http-equiv='Content-Type' content='text/html;charset=utf-8'/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="style.css">
 	<link rel="stylesheet" type="text/css" href="./x3dom/x3dom.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+	<link rel="shortcut icon" href="#">
 	<script type="text/javascript" src="./x3dom/x3dom.js"></script>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 	<title>Stroubles demo Tour</title>
 
@@ -87,8 +90,9 @@
 			<h1>Stroubles Tour</h1>
 		</div>
 		<div id="buttons">
-			<button id="btn-map" onClick="document.getElementById('map-and-gallery').scrollIntoView();"><i class="fa-solid fa-map-location-dot" style="margin: 0 10% 0 0;"></i><span class="open">Open Maps</span></button>
-			<button id="btn-gallery" onClick="document.getElementById('map-and-gallery').scrollIntoView();"><i class="fa-solid fa-camera-retro" style="margin: 0 10% 0 0;"></i><span class="open">Open Gallery</span></button>
+			<button id="start_demo" class="btn-mobile"><a class="btn btn-lg btn-success py-1" href="#" role="button" style="text-decoration: none; color: black;">Mobile</a></button>
+			<button id="btn-map" onClick="document.getElementById('map').scrollIntoView();"><i class="fa-solid fa-map-location-dot" style="margin: 0 10% 0 0;"></i><span class="open">Maps</span></span></button>
+			<button id="btn-gallery" onClick="document.getElementById('gallery').scrollIntoView();"><i class="fa-solid fa-camera-retro" style="margin: 0 10% 0 0;"></i><span class="open">Gallery</span></button>
 		</div>
 	</div>
 
@@ -186,7 +190,7 @@
 							<div class="numbertext">1 / 2</div>
 							<img src="./assets/images/robinson/1.png">
 							<div class="zoom">
-								<a class="zoomlink" href="https://metagrid2.sv.vt.edu/~parthranawat/StroublesTour/assets/images/robinson/1.png" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Open image in a new tab"><i class="fa-solid fa-up-right-from-square fa-2x"></i></a>
+								<a class="zoomlink" href="https://metagrid2.sv.vt.edu/~parthranawat/StroublesTour/assets/images/robinson/1.png" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Open image in a new tab"><i class="fa-solid fa-up-right-from-square fa-xl"></i></a>
 							</div>
 						</div>
 
@@ -196,7 +200,7 @@
 							<div class="numbertext">2 / 2</div>
 								<img src="./assets/images/robinson/2.png">
 								<div class="zoom">
-									<a class="zoomlink" href="https://metagrid2.sv.vt.edu/~parthranawat/StroublesTour/assets/images/robinson/2.png" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Open image in a new tab"><i class="fa-solid fa-up-right-from-square fa-2x"></i></a>
+									<a class="zoomlink" href="https://metagrid2.sv.vt.edu/~parthranawat/StroublesTour/assets/images/robinson/2.png" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Open image in a new tab"><i class="fa-solid fa-up-right-from-square fa-xl"></i></a>
 								</div>
 							</div>
 
@@ -271,6 +275,15 @@
 	</div>
 	<!-- Footer end -->
 
+	<div id="datapoints">
+		<ul>
+			<li>X-axis (&gamma;): <span id="Orientation_g">0</span><span>&deg;</span></li>
+			<li>Y-axis (&beta;): <span id="Orientation_b">0</span><span>&deg;</span></li>
+			<li>Z-axis (&alpha;): <span id="Orientation_a">0</span><span>&deg;</span></li>
+		  </ul>
+		   <p style="margin-top:1rem;">Num. of datapoints: <span class="badge badge-warning" id="num-observed-events">0</span></p>
+	</div>
+
 </body>
 
 <script>
@@ -290,17 +303,29 @@ function currentSlide(n) {
 function showSlides(n) {
   let i;
   let slides = document.getElementsByClassName("mySlides");
+  let zoom = document.getElementsByClassName("zoom");
   let dots = document.getElementsByClassName("demo");
   let captionText = document.getElementById("caption");
   if (n > slides.length) {slideIndex = 1}
   if (n < 1) {slideIndex = slides.length}
+
+  if (n > zoom.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+
   for (i = 0; i < slides.length; i++) {
     slides[i].style.display = "none";
   }
+
+  for (i = 0; i < zoom.length; i++) {
+    zoom[i].style.display = "none";
+  }
+
   for (i = 0; i < dots.length; i++) {
     dots[i].className = dots[i].className.replace(" active", "");
   }
+
   slides[slideIndex-1].style.display = "block";
+  zoom[slideIndex-1].style.display = "block";
   dots[slideIndex-1].className += " active";
   captionText.innerHTML = dots[slideIndex-1].alt;
 }
@@ -311,4 +336,115 @@ function showSlides(n) {
 	 shapeSwitch(6,'');
 };
 </script>
+
+<!-- Mobile View Code -->
+<script>
+	var runtime = null, scene = null;
+
+ initialize = function() {
+		runtime = document.getElementById("x3d").runtime;
+		scene = document.getElementById( "scene" );
+
+	};
+
+</script>
+
+<script>
+
+
+	/* function added by sheeban for reference */
+	function handleOrientation(event) {
+	  updateFieldIfNotNull('Orientation_a', event.alpha);
+	  updateFieldIfNotNull('Orientation_b', event.beta);
+	  updateFieldIfNotNull('Orientation_g', event.gamma);
+
+	  incrementEventCount();
+
+	  var V = document.getElementById('vp');
+	  var degtorad = Math.PI / 180; // Degree-to-Radian conversion
+
+	  // if the alpha beta gamma in degrees give them radians
+
+	  var a = event.alpha * degtorad;
+	  var b = event.beta * degtorad;
+	  var c = event.gamma * degtorad;
+
+	  var q1 = x3dom.fields.Quaternion.prototype.setFromEuler(c,b,a)
+
+	  var vector = new x3dom.fields.SFVec3f(1,0,0)
+	  var newmat = x3dom.fields.Quaternion.axisAngle(vector, -1.578)
+	  var m = newmat.toMatrix()
+	  newmat.setValue(m)
+	  var q2 = newmat.multiply(q1)
+	  var r = q2.toAxisAngle();
+
+	  V.setAttribute('orientation', r[0].x + ' ' + r[0].y + ' ' + r[0].z + ' ' + r[1])
+
+  }
+
+
+  function incrementEventCount(){
+	let counterElement = document.getElementById("num-observed-events")
+	let eventCount = parseInt(counterElement.innerHTML)
+	counterElement.innerHTML = (eventCount + 1); //truncated the change here
+  }
+
+  // can tweak this function to get less precision
+  function updateFieldIfNotNull(fieldName, value, precision=1){
+	if (value != null)
+	  document.getElementById(fieldName).innerHTML = value.toFixed(precision);
+  }
+
+  function handleMotion(event) {
+	updateFieldIfNotNull('Accelerometer_gx', event.accelerationIncludingGravity.x);
+	updateFieldIfNotNull('Accelerometer_gy', event.accelerationIncludingGravity.y);
+	updateFieldIfNotNull('Accelerometer_gz', event.accelerationIncludingGravity.z);
+
+	updateFieldIfNotNull('Accelerometer_x', event.acceleration.x);
+	updateFieldIfNotNull('Accelerometer_y', event.acceleration.y);
+	updateFieldIfNotNull('Accelerometer_z', event.acceleration.z);
+
+	updateFieldIfNotNull('Accelerometer_i', event.interval, 2);
+
+	// need to get rid of this code Gyroscope_z is not reffering
+	updateFieldIfNotNull('Gyroscope_z', event.rotationRate.alpha);
+	updateFieldIfNotNull('Gyroscope_y', event.rotationRate.beta);
+	updateFieldIfNotNull('Gyroscope_x', event.rotationRate.gamma);//changes made here z=alpha, y=beta, x = gamma
+	updateFieldIfNotNull('Gyroscope_x', event.rotationRate.x);
+	updateFieldIfNotNull('Gyroscope_x', event.rotationRate.y);
+	updateFieldIfNotNull('Gyroscope_x', event.rotationRate.z);
+	updateFieldIfNotNull('Gyroscope_x', event.rotationRate.w);
+
+	incrementEventCount();
+
+  }
+
+  let is_running = false;
+  let demo_button = document.getElementById("start_demo");
+  demo_button.onclick = function(e) {
+	document.getElementById('x3dElement').scrollIntoView();
+
+	e.preventDefault();
+
+	// Request permission for iOS 13+ devices
+	if (
+	  DeviceMotionEvent &&
+	  typeof DeviceMotionEvent.requestPermission === "function"
+	) {
+	  DeviceMotionEvent.requestPermission();
+	}
+
+	if (is_running){
+	  window.removeEventListener("devicemotion", handleMotion);
+	  window.removeEventListener("deviceorientation", handleOrientation);
+	  demo_button.innerHTML = "Start";
+	  is_running = false;
+	}else{
+	  window.addEventListener("devicemotion", handleMotion);
+	  window.addEventListener("deviceorientation", handleOrientation);
+	  document.getElementById("start_demo").innerHTML = "Stop";
+	  is_running = true;
+	}
+  };
+  </script>
 </html>
