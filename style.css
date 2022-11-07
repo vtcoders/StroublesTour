@@ -227,12 +227,32 @@ button{
 #x3dom-container{
 	flex: 5;
 	padding: 15px 20px;
+	position: relative;
 }
 
 #x3dElement{
 	height: 90vh;
 	display: flex;
 }
+
+#play{
+	position: absolute;
+	width: 100%;
+    bottom: 0;
+    padding: 10px;
+    color: #f2f2f2;
+    background-color: rgba(0, 0, 0, 0.4);
+    text-align: center;
+    border-radius: 8px;
+	/* height: 68px; */
+	font-size: 30px;
+
+}
+
+#play:hover{
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
 
 #map-and-gallery{
 	flex: 3;
@@ -466,7 +486,7 @@ button{
 	}
 
 	#x3dElement{
-	  height: 100vh;
+	  height: 90vh;
 	  width: 100%;
 
 	}

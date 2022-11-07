@@ -19,7 +19,7 @@
  "Nicholas Polys"
  "Photosphere from Annie Dubner"
 '/>
- 
+
  <Viewpoint/>
 
 <Transform DEF='dad_Sphere1'
@@ -32,7 +32,8 @@
    <MovieTexture startTime='-1'
     containerField='texture'
     url='
-     "../Videos/TriplePoint.mp4"'/>
+     "../Videos/TriplePoint.mp4"'
+     loop='true'/>
    <TextureTransform DEF='TT'
     containerField='textureTransform'
     scale='-1 1'/>

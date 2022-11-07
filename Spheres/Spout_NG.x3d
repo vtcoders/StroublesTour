@@ -19,7 +19,7 @@
  "Nicholas Polys"
  "Photosphere from John Munsell"
 '/>
- 
+
  <Viewpoint/>
 
 <Transform DEF='dad_Sphere1'
@@ -32,7 +32,8 @@
    <MovieTexture startTime='-1'
     containerField='texture'
     url='
-     "../Videos/SpoutSpring_NG.mp4"'/>
+     "../Videos/SpoutSpring_NG.mp4"'
+     loop='true'/>
    <TextureTransform DEF='TT'
     containerField='textureTransform'
     scale='-1 1'/>
